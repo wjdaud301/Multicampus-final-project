@@ -25,7 +25,7 @@
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-md-10 col-lg-8 mx-auto text-center">
                         <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                        <h2 class="text-white mb-5">OJO SIGN IN</h2>
+                        <h2 class="text-white mb-5">OJO Register</h2>
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
                         <!-- * * * * * * * * * * * * * * *-->
@@ -33,25 +33,32 @@
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <form class="form-signup" id="contactForm" action="{% url 'homepage:logcon'%}" method='POST'>
+                        <form class="form-signup" id="contactForm" action="{% url 'homepage:regcon'%}" method='POST'>
                             {% csrf_token %}
                             <!-- Email address input-->
                             <!-- <div class="row input-group-newsletter"> -->
                                 <div class="col_id">
-                                    <input class="form-control" name="userid" type="text" placeholder="Enter email address..." aria-label="Enter id..." data-sb-validations="required,text" />
+                                    <input class="form-control" name="userid" type="text" placeholder="Enter ID..." aria-label="Enter ID..." data-sb-validations="required,text" />
                                     <br>
-                                </div> 
+                                </div>
+
+                                <div class="col_email">
+                                    <input class="form-control" name="emailid" type="email" placeholder="Enter email..." aria-label="Enter email..." data-sb-validations="required,email" />
+                                    <br>
+                                </div>
                             
                                 <div class="col_pw">
-                                    <input class="form-control" name="userpw" type="password" placeholder="Enter email password..." aria-label="Enter password..." data-sb-validations="required,password" />
+                                    <input class="form-control" name="userpw" type="password" placeholder="Enter password..." aria-label="Enter password..." data-sb-validations="required,password" />
                                     <br>
                                 </div>
 
                                 <div class="col-auto"> 
-                                    <a class="btn btn-primary" href="/homepage/register">Register Me!</a>
-                                    <button class="btn btn-primary " name="submitButton" type="submit" >Notify Me!</button>
-                                    <!-- <button class="btn btn-primary " id="submitButton" type="submit" >Notify Me!</button> -->
+                                    <button class="btn btn-primary " name="submitButton" type="submit" >Create Account</button>
+                                    <a class="btn btn-primary" href="/homepage/login">Back to sign in</a>
+
                                 </div> 
+
+                            
                             <!-- </div> -->
                             <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
                             <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
@@ -120,7 +127,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; OJO 2021</div></footer>
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2021</div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

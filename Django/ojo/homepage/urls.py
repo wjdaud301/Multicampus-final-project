@@ -6,6 +6,11 @@ app_name = 'homepage'
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('register/', views.register, name='register'),
+
+    path('regcon/', views.regcon, name='regcon'),
+    path('logcon/', views.logcon, name='logcon'),
+
     path('login/', views.login, name='login'),
     path('theme/', views.showTheme, name='theme'),
     path('stay/', views.stayFilter, name='stay'),
