@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>OJO - SNS기반의 감성숙소 추천</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="../static/assets/ojo_favi.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href='{% static "css/stay_styles.css" %}' rel="stylesheet" />
     </head>
@@ -23,12 +23,12 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">숙소</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Stay</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
+                                <li><a class="dropdown-item" href="#!">전체 숙소 둘러보기</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                                <li><a class="dropdown-item" href="#!">인기 숙소 둘러보기</a></li>
+                                <li><a class="dropdown-item" href="#!">테마 선택으로 돌아가기</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -47,8 +47,8 @@
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder">숙소 리스트</h1>
-                    <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                    <h1 class="fw-bolder">나홀로 떠나는 여행</h1>
+                    <p class="lead mb-0">나홀로 떠나는 여행의 감성숙소 리스트</p>
                 </div>
             </div>
         </header>
@@ -59,13 +59,23 @@
                 <div class="col-lg-8">
                     <!-- Featured blog post-->
                     <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                        <div class="card-body">
+                        <a href="#!"><img class="card-img-top" src="{% static 'img/11-1.png' %}" alt="..." /></a>
+                        <!-- <div class="card-body">
                             <div class="small text-muted">January 1, 2021</div>
                             <h2 class="card-title">Featured Post Title</h2>
                             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                        </div>
+                        </div> -->
                     </div>
+                    <div class="col-lg-4">
+                     <!-- Search widget-->
+                        <div class="card-header">원하는 숙소명을 검색하세요                                      </div>
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" placeholder=" " aria-label=" " aria-describedby="button-search" />
+                                    <button class="btn btn-primary" id="button-search" type="button">SEARCH</button>
+                                </div>
+                            </div>
+                        </div> 
                     
 
                     <!-- Nested row for non-featured blog posts-->
@@ -73,19 +83,20 @@
                         <div class="col-lg-6">
                             <!-- Blog post-->
                             <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                                <a href="#!"><img class="card-img-top" src="{% static 'img/STAY QUIDI.png' %}" alt="..." /></a>
                                 <div class="card-body">
-                                    <div class="small text-muted">January 1, 2021</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="/homepage/detail/">Read more →</a>
+                                    <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                    <h2 class="card-title h4">STAY QUIDI</h2>
+                                    <p class="card-text">여행에서 만난 우리집 <br/>제주특별자치도 제주시 한림읍 귀덕14길 59
+                                    </p>
+                                    <a class="btn btn-primary" href="/homepage/detail/">숙소상세</a>
                                 </div>
                             </div>
                             <!-- Blog post-->
                             <div class="card mb-4">
                                 <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
                                 <div class="card-body">
-                                    <div class="small text-muted">January 1, 2021</div>
+                                    <!-- <div class="small text-muted">January 1, 2021</div> -->
                                     <h2 class="card-title h4">Post Title</h2>
                                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
                                     <a class="btn btn-primary" href="#!">Read more →</a>
@@ -97,7 +108,7 @@
                             <div class="card mb-4">
                                 <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
                                 <div class="card-body">
-                                    <div class="small text-muted">January 1, 2021</div>
+                                    <!-- <div class="small text-muted">January 1, 2021</div> -->
                                     <h2 class="card-title h4">Post Title</h2>
                                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
                                     <a class="btn btn-primary" href="#!">Read more →</a>
@@ -107,7 +118,7 @@
                             <div class="card mb-4">
                                 <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
                                 <div class="card-body">
-                                    <div class="small text-muted">January 1, 2021</div>
+                                    <!-- <div class="small text-muted">January 1, 2021</div> -->
                                     <h2 class="card-title h4">Post Title</h2>
                                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.</p>
                                     <a class="btn btn-primary" href="#!">Read more →</a>
@@ -143,7 +154,7 @@
                     </div> -->
                     <!-- Categories widget-->
                     <div class="card mb-4">
-                        <div class="card-header">Filter</div>
+                        <div class="card-header">FIND STAY</div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">                 
@@ -151,26 +162,41 @@
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item" href="#!">전국</a></li>
                                         <li><hr class="dropdown-divider" /></li>
-                                        <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                        <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                                        <li><a class="dropdown-item" href="#!">서울</a></li>
+                                        <li><a class="dropdown-item" href="#!">부산</a></li>
+                                        <li><a class="dropdown-item" href="#!">제주</a></li>
+                                        <li><a class="dropdown-item" href="#!">강원</a></li>
+                                        <li><a class="dropdown-item" href="#!">인천</a></li>
+                                        <li><a class="dropdown-item" href="#!">경기</a></li>
+                                        <li><a class="dropdown-item" href="#!">대구</a></li>
+                                        <li><a class="dropdown-item" href="#!">광주</a></li>
+                                        <li><a class="dropdown-item" href="#!">대전</a></li>
+                                        <li><a class="dropdown-item" href="#!">울산</a></li>
+                                        <li><a class="dropdown-item" href="#!">세종</a></li>
+                                        <li><a class="dropdown-item" href="#!">경상</a></li>
+                                        <li><a class="dropdown-item" href="#!">전라</a></li>
+                                        <li><a class="dropdown-item" href="#!">충청</a></li>
                                     </ul>
 
 
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">인원</a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="#!">All Products</a></li>
+                                        <li><a class="dropdown-item" href="#!">선택하지 않음</a></li>
                                         <li><hr class="dropdown-divider" /></li>
-                                        <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                        <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                                        <li><a class="dropdown-item" href="#!">2명</a></li>
+                                        <li><a class="dropdown-item" href="#!">2명 ~ 3명</a></li>
+                                        <li><a class="dropdown-item" href="#!">4명 이상</a></li>
                                     </ul>
                     
                                     
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">숙소유형</a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="#!">All Products</a></li>
+                                        <li><a class="dropdown-item" href="#!">전체</a></li>
                                         <li><hr class="dropdown-divider" /></li>
-                                        <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                        <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                                        <li><a class="dropdown-item" href="#!">게스트하우스</a></li>
+                                        <li><a class="dropdown-item" href="#!">렌탈하우스</a></li>
+                                        <li><a class="dropdown-item" href="#!">한옥스테이</a></li>
+                                        <li><a class="dropdown-item" href="#!">풀빌라</a></li>
                                     </ul>
 
                                     
@@ -179,11 +205,34 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Side widget
+                    <!-- Side widget-->
                     <div class="card mb-4">
-                        <div class="card-header">Side Widget</div>
-                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-                    </div> -->
+                        <a href="#!"><img class="card-img-top" src="{% static 'img/map.png' %}" alt="..." /></a>
+                        <div class="card-body">
+                            <div class="small text-muted">09.16. 00시 기준</div>
+                            <h2 class="card-title h4">지역별 거리 두기 단계 현황</h2>
+                            <p class="card-text">4단계 (최대 2인) <br/>
+                                - 수도권 3개 (서울, 인천, 경기)<br/>
+                                - 제주 1개 (제주)<br/>
+                                <br/>
+                                3단계 (최대 4인)<br/>
+                                - 수도권 2개 (강화군, 옹진군)<br/>
+                                - 충청권 4개 (세종, 충북, 충남, 대전)<br/>
+                                - 호남권 3개 (광주, 전북, 전남)<br/>
+                                - 경북권 2개 (대구, 경북)<br/>
+                                - 경남권 3개 (울산, 부산, 경남)<br/>
+                                - 강원 5개 (춘천시, 원주시, 동해시, 강릉시, 속초시)<br/>
+                                <br/>
+                                2단계 (최대 8인)<br/>
+                                - 호남권 11개 (정읍시, 남원시, 김제시, 완주군(혁신도시 갈산리 제외), 진안군, 무주군, 장수군, 임실군, 순창군, 고창군, 부안군)<br/>
+                                - 경북권 2개 (문경, 상주시)<br/>
+                                - 강원 13개 (태백시, 삼척시, 횡성군, 영월군, 평창군, 정선군, 철원군, 화천군, 양구군, 인제군, 고성군, 양양군, 홍천군)<br/>
+                                <br/>
+                                1단계<br/>
+                                - 경북권 12개 (군위군, 의성군, 청송군, 영양군, 영덕군, 청도군, 고령군, 성주군, 예천군, 봉화군, 울릉군, 울진군)</p>
+                            <a class="btn btn-primary" href="http://ncov.mohw.go.kr/">코로나19 공식 사이트 바로가기</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
