@@ -13,6 +13,6 @@ urlpatterns = [
 
     path('login/', views.login, name='login'),
     path('theme/', views.showTheme, name='theme'),
-    path('stay/', views.stayFilter, name='stay'),
+    path('<str:theme>/stay/', views.stayFilter, name='stay'),
     path('detail/', views.stayDetail, name='staydetail'),
 ]

@@ -59,13 +59,32 @@
                 <div class="col-lg-8">
                     <!-- Featured blog post-->
                     <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="{% static 'img/11-1.png' %}" alt="..." /></a>
+            
+                    {% if filter == '나홀로 여행'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/11.png' %}"/></a>
+                    {% elif filter == '도심속 휴식'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/17.jpg' %}"/></a>
+                    {% elif filter == '정적인 휴식'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/15.jpg' %}"/></a>
+                    {% elif filter == '아이와 함께'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/14.jpg' %}"/></a>
+                    {% elif filter == '시티뷰'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/17.jpg' %}"/></a>
+                    {% elif filter == '한옥'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/2.jpg' %}"/></a>
+                    {% elif filter == '오션 뷰'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/10.jpg' %}"/></a>
+                    {% else %}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/7.jpg' %}"/></a>
+
                         <!-- <div class="card-body">
-                            <div class="small text-muted">January 1, 2021</div>
+                            <div class="smt-muted">January 1, 2021</div>
                             <h2 class="card-title">Featured Post Title</h2>
                             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
                         </div> -->
+                    {% endif %}
                     </div>
+
                     <div class="col-lg-4">
                      <!-- Search widget-->
                         <div class="card-header">원하는 숙소명을 검색하세요                                      </div>

@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib import auth
 
-
+filter = {'one' : '나홀로 여행', 'two':'도심속 휴식', 'three':'정적인 휴식','four':'아이와 함께','five':'시티뷰','six':'한옥','seven':'오션 뷰','eight':'숲 속'}
 # Create your views here.
 def home(requests):
     return render(requests, 'homepage/index.html')
@@ -45,10 +45,14 @@ def login(requests):
     return render(requests, 'homepage/login.html')
 
 def showTheme(requests):
-    return render(requests, 'homepage/theme.html')
+    context = filter
+    return render(requests, 'homepage/theme.html',context)
 
-def stayFilter(requests):
-    return render(requests, 'homepage/stayfilter.html')
+def stayFilter(requests, theme):
+    # reverse_filter = dict(map(reversed, filter.items()))
+    # context = reverse_filter[theme]
+    context = {'filter' : theme}
+    return render(requests, 'homepage/stayfilter.html', context)
 
 def stayDetail(requests):
     return render(requests, 'homepage/staydetail.html')
