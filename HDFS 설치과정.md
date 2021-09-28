@@ -30,7 +30,7 @@ $ wget http://apache.claz.org/hadoop/common/hadoop-3.2.2/hadoop-3.2.2.tar.gz
 $ tar -xzvf hadoop-3.2.2.tar.gz
 
 # /usr/local/hadoop directory로 파일 옮기기
-$ sudo mv hadoop-3.2.2 /usr/local/hadoop
+$ sudo mv hadoop-3.2.2 /usr/local/
 ```
 
 
@@ -81,7 +81,7 @@ $ source ~/.bashrc
 
 ```shell
 # hadoop-env.sh 내용 변경
-$ nano /home/hadoop/hadoop-2.7.7/etc/hadoop/hadoop-env.sh
+$ nano /usr/local/hadoop-3.2.2/etc/hadoop/hadoop-env.sh
 
 # export JAVA_HOME 있는 부분 찾아서 아래 내용으로 변경
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 # .bashrc에 입력한 JAVA_HOME과 동일

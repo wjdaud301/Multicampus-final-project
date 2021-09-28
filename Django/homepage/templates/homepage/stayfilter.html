@@ -1,0 +1,325 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>OJO - SNS기반의 감성숙소 추천</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/ojo_favi.ico' %}" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href='{% static "css/stay_styles.css" %}' rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#!">OJO 감성숙소</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Stay</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#!">전체 숙소 둘러보기</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#!">인기 숙소 둘러보기</a></li>
+                                <li><a class="dropdown-item" href="/homepage/theme">테마 선택으로 돌아가기</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <button class="btn btn-outline-dark" href="http://ncov.mohw.go.kr/socdisBoardView.do?brdId=6&brdGubun=1">
+                        <!-- <button class="btn btn-outline-dark" type="submit">-->
+                            <i class="bi-fill me-1"></i>
+                            코로나 안전정보
+                            <!-- <a class="btn btn-primary" href="http://ncov.mohw.go.kr/">코로나19 공식 사이트 바로가기</a> -->
+                            <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Page header with logo and tagline-->
+        <header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">나홀로 떠나는 여행</h1>
+                    <p class="lead mb-0">나홀로 떠나는 여행의 감성숙소 리스트</p>
+                </div>
+            </div>
+        </header>
+        <!-- Page content-->
+        <div class="container">
+            <div class="row">
+                <!-- Blog entries-->
+                <div class="col-lg-8">
+                    <!-- Featured blog post-->
+                    <div class="card mb-4">
+                    {% if filter == '나홀로 여행'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/11.png' %}"/></a>
+                    {% elif filter == '도심속 휴식'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/17.jpg' %}"/></a>
+                    {% elif filter == '정적인 휴식'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/15.jpg' %}"/></a>
+                    {% elif filter == '아이와 함께'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/14.jpg' %}"/></a>
+                    {% elif filter == '시티뷰' %}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/18.jpg' %}"/></a>
+                    {% elif filter == '한옥'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/2.jpg' %}"/></a>
+                    {% elif filter == '오션 뷰'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/10.jpg' %}"/></a>
+                    {% elif filter == '숲 속'%}
+                        <a href="#!"><img class="card-img-top" src= "{% static 'img/7.jpg' %}"/></a>
+                    {% endif %}
+                        <!-- <div class="card-body">
+                            <div class="smt-muted">January 1, 2021</div>
+                            <h2 class="card-title">Featured Post Title</h2>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                        </div> -->
+                    
+                    </div>
+                    <div class="col-lg-4">
+                     <!-- Search widget-->
+                        <div class="card-header"></div>
+                        </div> 
+
+                    <div class="card mb-4">
+                        <div class="card-header">FIND STAY</div>
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">지역</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="#!">전국</a></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><a class="dropdown-item" href="#!">서울</a></li>
+                                        <li><a class="dropdown-item" href="#!">부산</a></li>
+                                        <li><a class="dropdown-item" href="#!">제주</a></li>
+                                        <li><a class="dropdown-item" href="#!">강원</a></li>
+                                        <li><a class="dropdown-item" href="#!">인천</a></li>
+                                        <li><a class="dropdown-item" href="#!">경기</a></li>
+                                        <li><a class="dropdown-item" href="#!">대구</a></li>
+                                        <li><a class="dropdown-item" href="#!">광주</a></li>
+                                        <li><a class="dropdown-item" href="#!">대전</a></li>
+                                        <li><a class="dropdown-item" href="#!">울산</a></li>
+                                        <li><a class="dropdown-item" href="#!">세종</a></li>
+                                        <li><a class="dropdown-item" href="#!">경상</a></li>
+                                        <li><a class="dropdown-item" href="#!">전라</a></li>
+                                        <li><a class="dropdown-item" href="#!">충청</a></li>
+                                    </ul>
+
+
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">인원</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="#!">선택하지 않음</a></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><a class="dropdown-item" href="#!">2명</a></li>
+                                        <li><a class="dropdown-item" href="#!">2명 ~ 3명</a></li>
+                                        <li><a class="dropdown-item" href="#!">4명 이상</a></li>
+                                    </ul>
+                    
+                                    
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">숙소유형</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="#!">전체</a></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><a class="dropdown-item" href="#!">게스트하우스</a></li>
+                                        <li><a class="dropdown-item" href="#!">렌탈하우스</a></li>
+                                        <li><a class="dropdown-item" href="#!">한옥스테이</a></li>
+                                        <li><a class="dropdown-item" href="#!">풀빌라</a></li>
+                                    </ul>
+                                    <input class="form-control" type="text" placeholder="원하는 숙소명을 검색하세요..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                    <button class="btn btn-primary" id="button-search" type="button">SEARCH</button>
+                                </div>
+                            </div>
+                        </div>
+                    
+
+                    <!-- Nested row for non-featured blog posts-->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!-- Blog post-->
+                            <div class="card mb-4">
+                                <a href="#!"><img class="card-img-top" src="{% static 'img/filter0.jpg' %}" alt="..." /></a>
+                                <div class="card-body">
+                                    <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                    {% for k,v in '0'.items %}
+                                        {% if k == name %}
+                                            <h2 class="card-title h4">{{v}}</h2>
+                                        
+                                            <p class="card-text">
+                                            {% if k == description %}
+                                                {{v}} <br/>
+                                            {% if k == area %}    
+                                                {{v}}
+}                                            </p>
+                                    {% endfor %}
+                                        <a class="btn btn-primary" href="{% url 'homepage:detail' one %}">숙소상세</a>
+                                </div>
+                            </div>
+                            <!-- Blog post-->
+                            <div class="card mb-4">
+                                <a href="#!"><img class="card-img-top" src="{% static 'img/bengdi.jpg' %}" alt="..." /></a>
+                                <div class="card-body">
+                                    <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                    <h2 class="card-title h4">벵디1967</h2>
+                                    <p class="card-text">취향을 전하는 사람들의 작은 집.<br/>제주시 구좌읍 평대리 1967번지</p>
+                                    <a class="btn btn-primary" href="#!">숙소상세</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <!-- Blog post-->
+                            <div class="card mb-4">
+                                <a href="#!"><img class="card-img-top" src="{% static 'img/stay sihoil.png' %}" alt="..." /></a>
+                                <div class="card-body">
+                                    <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                    <h2 class="card-title h4">스테이 시호일</h2>
+                                    <p class="card-text">시간의 흔적을 담은 스테이<br/>강원도 강릉시 경강로2046번길 19-3</p>
+                                    <a class="btn btn-primary" href="#!">숙소상세</a>
+                                </div>
+                            </div>
+                            <!-- Blog post-->
+                            <div class="card mb-4">
+                                <a href="#!"><img class="card-img-top" src="{% static 'img/someone.png' %}" alt="..." /></a>
+                                <div class="card-body">
+                                    <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                    <h2 class="card-title h4">썸원스페이지 숲</h2>
+                                    <p class="card-text">책과 쉼이 있는 고요한 공간<br/>강원도 춘천시 신동면 삼포길 155</p>
+                                    <a class="btn btn-primary" href="#!">숙소상세</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pagination-->
+                    <nav aria-label="Pagination">
+                        <hr class="my-0" />
+                        <ul class="pagination justify-content-center my-4">
+                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+                            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Side widgets-->
+                <div class="col-lg-4">
+                    <!-- Side widget-->
+                    <div class="card mb-4">
+                        <!-- <a href="#!"><img class="card-img-top" src="{% static 'img/map.png' %}" alt="..." /></a> -->
+                        <div class="card-body">
+                            <div class="small text-muted">{{ time }}. 00시 기준</div>
+                            <h2 class="card-title h4">지역별 거리 두기 단계 현황</h2>
+                                
+                                {% for k, v in 서울.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                            
+                                {% for k, v in 부산.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                
+                                {% for k, v in 대구.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+
+                                {% for k, v in 인천.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                                        
+                                {% for k, v in 광주.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                                        
+                                {% for k, v in 대전.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                                    
+                                {% for k, v in 울산.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                                        
+                                {% for k, v in 세종.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                                        
+                                {% for k, v in 경기.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                                        
+                                {% for k, v in 강원.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                                        
+                                {% for k, v in 충북.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                                        
+                                {% for k, v in 충남.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                                        
+                                {% for k, v in 전북.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                                        
+                                {% for k, v in 전남.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                                        
+                                {% for k, v in 경북.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+                                                        
+                                {% for k, v in 경남.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+
+                                {% for k, v in 제주.items %} 
+                                        {{k}} : {{v}} <br/>
+                                {% endfor %}<br/>
+  
+                                <!-- <p class="card-text">4단계 (최대 2인) <br/>
+                                    - 수도권 3개 (서울, 인천, 경기)<br/>
+                                    - 제주 1개 (제주)<br/>
+                                    <br/>
+                                    3단계 (최대 4인)<br/>
+                                    - 수도권 2개 (강화군, 옹진군)<br/>
+                                    - 충청권 4개 (세종, 충북, 충남, 대전)<br/>
+                                    - 호남권 3개 (광주, 전북, 전남)<br/>
+                                    - 경북권 2개 (대구, 경북)<br/>
+                                    - 경남권 3개 (울산, 부산, 경남)<br/>
+                                    - 강원 5개 (춘천시, 원주시, 동해시, 강릉시, 속초시)<br/>
+                                    <br/>
+                                    2단계 (최대 8인)<br/>
+                                    - 호남권 11개 (정읍시, 남원시, 김제시, 완주군(혁신도시 갈산리 제외), 진안군, 무주군, 장수군, 임실군, 순창군, 고창군, 부안군)<br/>
+                                    - 경북권 2개 (문경, 상주시)<br/>
+                                    - 강원 13개 (태백시, 삼척시, 횡성군, 영월군, 평창군, 정선군, 철원군, 화천군, 양구군, 인제군, 고성군, 양양군, 홍천군)<br/>
+                                    <br/>
+                                    1단계<br/>
+                                    - 경북권 12개 (군위군, 의성군, 청송군, 영양군, 영덕군, 청도군, 고령군, 성주군, 예천군, 봉화군, 울릉군, 울진군)</p> -->
+                                  
+                            <a class="btn btn-primary" href="http://ncov.mohw.go.kr/">코로나19 공식 사이트 바로가기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; OJO 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src='{% static "js/stay_scripts.js" %}'></script>
+    </body>
+</html>
