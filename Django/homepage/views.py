@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib import auth
 
-from homepage.MongoDbManager import MongoDbManager
+# from homepage.MongoDbManager import MongoDbManager
 from datetime import datetime
 import pandas as pd
 from homepage.Api import Json
