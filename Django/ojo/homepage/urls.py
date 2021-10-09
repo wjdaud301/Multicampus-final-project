@@ -10,9 +10,13 @@ urlpatterns = [
 
     path('regcon/', views.regcon, name='regcon'),
     path('logcon/', views.logcon, name='logcon'),
+    path('choice/', views.choice, name ='choice'),
+    path('totalstay/', views.totalstay, name ='totalstay'),
+    path('find/', views.find, name ='find'),
+    path('popular/', views.popular, name ='popular'),    
 
     path('login/', views.login, name='login'),
     path('theme/', views.showTheme, name='theme'),
     path('<str:theme>/stay/', views.stayFilter, name='stay'),
-    path('detail/', views.stayDetail, name='staydetail'),
+    path('<str:name>/detail/', views.stayDetail, name='staydetail'),
 ]

@@ -15,7 +15,13 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         {% load static %}
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/relogin.css' %}" rel="stylesheet" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Batang&family=Gowun+Dodum&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
         
     </head>
     <body id="page-top">
@@ -24,8 +30,8 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-md-10 col-lg-8 mx-auto text-center">
-                        <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                        <h2 class="text-white mb-5">OJO SIGN IN</h2>
+                        <!-- <i class="far fa-paper-plane fa-2x mb-2 text-white"></i> -->
+                        <h2 class="text-white mb-5" style="font-family: 'Gowun Dodum';font-size: 30px;">OJO SIGN IN</h2>
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
                         <!-- * * * * * * * * * * * * * * *-->
@@ -35,7 +41,7 @@
                         <!-- to get an API token!-->
                         <form class="form-signup" id="contactForm" action="{% url 'homepage:logcon'%}" method='POST'>
                             {% csrf_token %}
-                            <p>로그인 정보를 다시 확인하세요</p>
+                            <p style="font-family: 'Gowun Dodum';">로그인 정보를 다시 확인하세요</p>
                             <!-- Email address input-->
                             <!-- <div class="row input-group-newsletter"> -->
                                 <div class="col_id">
@@ -49,8 +55,13 @@
                                 </div>
 
                                 <div class="col-auto"> 
-                                    <a class="btn btn-primary" href="/homepage/register">Register Me!</a>
-                                    <button class="btn btn-primary " name="submitButton" type="submit" >Notify Me!</button>
+                                    
+                                    <a class="btn btn-primary" href="/homepage/register" style="
+                                    font-family: 'Gowun Dodum';
+                                " >회원가입</a>
+                                    <button class="btn btn-primary " name="submitButton" type="submit" style="
+                                    font-family: 'Gowun Dodum';
+                                " >로그인</button>
                                     <!-- <button class="btn btn-primary " id="submitButton" type="submit" >Notify Me!</button> -->
                                 </div> 
                             <!-- </div> -->
@@ -79,7 +90,7 @@
             </div>
         </section>
         <!-- Contact-->
-        <section class="contact-section bg-black">
+        <!-- <section class="contact-section bg-black">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-md-4 mb-3 mb-md-0">
@@ -112,7 +123,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="social d-flex justify-content-center">
                     <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                     <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
