@@ -28,6 +28,7 @@ def insta_info(theme):
     
     return context
  
+ 
     # if request.method == 'GET':
     #     return get()
     # else:

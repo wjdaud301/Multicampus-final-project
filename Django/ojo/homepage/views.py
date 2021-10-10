@@ -60,15 +60,15 @@ def showTheme(requests):
     return render(requests, 'homepage/theme.html', context)
 
 def stayFilter(requests, theme):
-    print(theme)
-    nowtime = datetime.today().strftime("%Y-%m-%d")
-    co_if = Json.corona_info(nowtime)
-    insta_if = Json.insta_info(theme)
-    co_if.update(insta_if)
-    co_if['filter'] = theme
-    print(co_if)
-    return render(requests, 'homepage/stayfilter.html', co_if)
+    # print(theme)
+    # nowtime = datetime.today().strftime("%Y-%m-%d")
+    # co_if = Json.corona_info(nowtime)
+    # insta_if = Json.insta_info(theme)
+    # co_if.update(insta_if)
+    # co_if['filter'] = theme
+    # print(co_if)
+    return render(requests, 'homepage/stayfilter.html')
 
-def stayDetail(requests):
+def stayDetail(requests, name):
     return render(requests, 'homepage/staydetail.html')
 

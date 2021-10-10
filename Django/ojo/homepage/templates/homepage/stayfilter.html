@@ -12,6 +12,22 @@
         <link rel="icon" type="image/x-icon" href="{% static 'assets/ojo_favi.ico' %}" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href='{% static "css/stay_styles.css" %}' rel="stylesheet" />
+        <style>
+            body
+            {
+            background-image:url("{% static 'img/11.png' %}");
+            background-repeat:no-repeat;
+            background-size:cover;
+            }
+        </style>
+        <style>
+            .tdstyle
+            {
+            background-image:url("{% static 'img/11.png' %}");
+            background-repeat:no-repeat;
+            background-size:cover;
+            }
+        </style>
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -46,7 +62,7 @@
             </div>
         </nav>
         <!-- Page header with logo and tagline-->
-        <header class="py-5 bg-light border-bottom mb-4">
+        <header td class="py-5 tdstyle border-bottom mb-4">
             <div class="container">
                 <div class="text-center my-5">
                     <h1 class="fw-bolder">나홀로 떠나는 여행</h1>
@@ -142,17 +158,17 @@
                     
 
                     <!-- Nested row for non-featured blog posts-->
-                    <div class="row">
+                    <div class="row ">
                         <div class="col-lg-6">
                             <!-- Blog post-->
                             <div class="card mb-4">
                                 <a href="#!"><img class="card-img-top" src="{% static 'img/STAY QUIDI.png' %}" alt="..." /></a>
                                 <div class="card-body">
                                     <!-- <div class="small text-muted">January 1, 2021</div> -->
-                                    <h2 class="card-title h4">{{ a0 | get_dict:'name' }}</h2>
-                                    <p class="card-text">여행에서 만난 우리집 <br/>{{ a0 | get_dict:'place' }}
+                                    <h2 class="card-title h4"></h2>
+                                    <p class="card-text">여행에서 만난 우리집 <br/>
                                     </p>
-                                    <a class="btn btn-primary" href="/homepage/detail/">숙소상세</a>
+                                    <a class="btn btn-primary" href="#!">숙소상세</a>
                                 </div>
                             </div>
                             <!-- Blog post-->
@@ -160,8 +176,8 @@
                                 <a href="#!"><img class="card-img-top" src="{% static 'img/bengdi.jpg' %}" alt="..." /></a>
                                 <div class="card-body">
                                     <!-- <div class="small text-muted">January 1, 2021</div> -->
-                                    <h2 class="card-title h4">{{ a1 | get_dict:'name' }}</h2>
-                                    <p class="card-text">취향을 전하는 사람들의 작은 집.<br/>{{ a1 | get_dict:'place' }}</p>
+                                    <h2 class="card-title h4"></h2>
+                                    <p class="card-text">취향을 전하는 사람들의 작은 집.<br/></p>
                                     <a class="btn btn-primary" href="#!">숙소상세</a>
                                 </div>
                             </div>
@@ -172,8 +188,8 @@
                                 <a href="#!"><img class="card-img-top" src="{% static 'img/stay sihoil.png' %}" alt="..." /></a>
                                 <div class="card-body">
                                     <!-- <div class="small text-muted">January 1, 2021</div> -->
-                                    <h2 class="card-title h4">{{ a2 | get_dict:'name' }}</h2>
-                                    <p class="card-text">시간의 흔적을 담은 스테이<br/>{{ a2 | get_dict:'place' }}</p>
+                                    <h2 class="card-title h4"></h2>
+                                    <p class="card-text">시간의 흔적을 담은 스테이<br/></p>
                                     <a class="btn btn-primary" href="#!">숙소상세</a>
                                 </div>
                             </div>
@@ -182,8 +198,8 @@
                                 <a href="#!"><img class="card-img-top" src="{% static 'img/someone.png' %}" alt="..." /></a>
                                 <div class="card-body">
                                     <!-- <div class="small text-muted">January 1, 2021</div> -->
-                                    <h2 class="card-title h4">{{ a3 | get_dict:'name' }}</h2>
-                                    <p class="card-text">책과 쉼이 있는 고요한 공간<br/>{{ a3 | get_dict:'place' }}</p>
+                                    <h2 class="card-title h4"></h2>
+                                    <p class="card-text">책과 쉼이 있는 고요한 공간<br/></p>
                                     <a class="btn btn-primary" href="#!">숙소상세</a>
                                 </div>
                             </div>
@@ -209,10 +225,10 @@
                     <div class="card mb-4">
                         <!-- <a href="#!"><img class="card-img-top" src="{% static 'img/map.png' %}" alt="..." /></a> -->
                         <div class="card-body">
-                            <div class="small text-muted">{{ time }}. 00시 기준</div>
+                            <div class="small text-muted">. 00시 기준</div>
                             <h2 class="card-title h4">지역별 거리 두기 단계 현황</h2>
                                 
-                                지역 : {{ 서울 | get_dict:'지역' }} <br/>
+                                <!-- 지역 : {{ 서울 | get_dict:'지역' }} <br/>
                                 확진자수 : {{ 서울 | get_dict:'확진자수' }} <br/>
                                 거리두기단계 : {{ 서울 | get_dict:'거리두기단계' }} <br/>
                                 상세내용 : {{ 서울 | get_dict:'상세내용' }} <br/>
@@ -312,7 +328,7 @@
                                 확진자수 : {{ 제주 | get_dict:'확진자수' }} <br/>
                                 거리두기단계 : {{ 제주 | get_dict:'거리두기단계' }} <br/>
                                 상세내용 : {{ 제주 | get_dict:'상세내용' }} <br/>
-                                <br/>
+                                <br/> -->
 
                                 <!-- <p class="card-text">4단계 (최대 2인) <br/>
                                     - 수도권 3개 (서울, 인천, 경기)<br/>
