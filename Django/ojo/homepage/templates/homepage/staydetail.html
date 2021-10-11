@@ -1,4 +1,5 @@
 {% load static %}
+{% load dict_filter %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,19 +12,50 @@
         <link rel="icon" type="image/x-icon" href="{% static 'assets/ojo_favi.ico' %}" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href='{% static "css/staydetail_styles.css" %}' rel="stylesheet" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Batang&family=Gowun+Dodum&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+        <style>
+            #myBtn {
+              display: none;
+              position: fixed;
+              bottom: 20px;
+              right: 30px;
+              z-index: 99;
+              font-size: 18px;
+              border: none;
+              outline: none;
+              background-color: burlywood;
+              color: white;
+              cursor: pointer;
+              padding: 15px;
+              border-radius: 4px;
+            }
+            
+            #myBtn:hover {
+              background-color: #555;
+            }
+            </style>
+        <script src="https://kit.fontawesome.com/f6dcf461c1.js" crossorigin="anonymous"></script>
+    
+    
     </head>
     <body>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+
         <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-5">
-                <a class="navbar-brand" href="#\">OJO 감성숙소</a>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+            <div class="container px-4 px-lg-5" style="font-family: 'Gowun Dodum', serif;">
+                <a class="font-GB" href="{% url 'homepage:choice'%}" style="text-decoration: none;">OJO 감성숙소</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Services</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/theme">테마 선택하기</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/popular">인기 숙소 둘러보기</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/totalstay">전체 숙소 둘러보기</a></li>
                     </ul>
                 </div>
             </div>
@@ -32,68 +64,216 @@
         <div class="container px-4 px-lg-5">
             <!-- Heading Row-->
             <div class="row gx-4 gx-lg-5 align-items-center my-5">
-                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'img/3.png' %}" alt="..." /></div>
+                <div class="col-lg-7">
+                    <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'img/det10.jpg' %}" alt="..." /></div>
                 <div class="col-lg-5">
-                    <h1 class="font-weight-light">스테이 쿠이디 Quidi</h1>
-                    <p>STAY QUIDI
-                        ‘스테이 쿠이디 Quidi’는 오래된 팽나무가 있는 제주의 작은 마을 귀덕 포구에 자리 잡고 있습니다. 이곳에 오시는 모든 분들이 우리 집을 만난 것처럼 편안하면서도 색다른 감각을 깨울 수 있으면 좋겠습니다.</p>
-                    <a class="btn btn-primary" href="https://www.stayquidi.com/">RESERVATION</a>
+                    <h1 class="font-NM">{{ b10 | get_dict:'name' }}</h1>
+                    <p style="font-family: 'Do Hyeon';font-size: 25px;text-align: left;" >
+                        
+                        {% if b10.stage == '4 단계'%}
+                            {{ b10 | get_dict:'stage' }} - 18시 이후 2명까지 모임 가능 <br/>(3인 이상 사적모임 금지)
+                        {% endif %}
+                            
+                        {% if b10.stage == '3 단계'%}
+                            {{ b10 | get_dict:'stage' }} - 4명까지 모임 가능 <br/>(5인 이상 사적모임 금지)
+                        {% endif %}</p>
+                        
+                    <p style=" font-family: 'Gowun Dodum';">{{ b10 | get_dict:'original_content' }}</p>
+                    
+                    <!-- <a class="btn btn-primary" href="https://www.stayquidi.com/">RESERVATION</a> -->
                 </div>
             </div>
             <!-- Call to Action-->
+            <!--
             <div class="card text-white bg-secondary my-5 py-4 text-center">
                 <div class="card-body"><p class="text-white m-0"><a class href="http://ncov.mohw.go.kr/socdisBoardView.do?brdId=6&brdGubun=1">코로나19 대응 방안에 대한 최신 정보를 확인하세요.</a></p></div>
             </div>
+            -->
+
+            
+                <div class="card-body" style="text-align: center; font-size: 20px;" ><p style="padding-top: 5rem;border-bottom: ridge;font-family: 'Gowun Batang';"> 비슷한 감성의 숙소를 찾아봤어요</p></div>
+            
+            
             <!-- Content Row-->
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{% static 'img/15.jpg' %}"  alt="..." />
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <a href="{% url 'homepage:staydetail' b0.name %}">
+                                <img class="card-img-top" src="{% static 'img/det0.jpg' %}"  alt="..." />
+                                </a>
 
-                            <!--
-                            <h2 class="card-title">Card One</h2>
-                            <p class="card-text">card1</p>
-                            -->
+                                <!--
+                                <h2 class="card-title">Card One</h2>
+                                <p class="card-text">card1</p>
+                                -->
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" id='name1' href="{% url 'homepage:staydetail' b0.name %}">{{ b0 | get_dict:'name' }}</a>
+                                </div>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">MORE INFO</a></div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{% static 'img/16.jpg' %}" alt="..." />
-
-                            <!--
-                            <h2 class="card-title">Card Two</h2>
-                            <p class="card-text">card2</p>
-                            -->
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <a href="{% url 'homepage:staydetail' b1.name %}">
+                                <img class="card-img-top" src="{% static 'img/det1.jpg' %}" alt="..." />
+                                    </a>
+                                <!--
+                                <h2 class="card-title">Card Two</h2>
+                                <p class="card-text">card2</p>
+                                -->
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'homepage:staydetail' b1.name %}">{{ b1 | get_dict:'name' }}</a></div>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">MORE INFO</a></div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{% static 'img/17.jpg' %}"  alt="..." />
-
-                            <!--
-                            <h2 class="card-title">Card Three</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-                            -->
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <a href="{% url 'homepage:staydetail' b2.name %}">
+                                <img class="card-img-top" src="{% static 'img/det2.jpg' %}"  alt="..." />
+                                    </a>
+                                <!--
+                                <h2 class="card-title">Card Three</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                                -->
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'homepage:staydetail' b2.name %}">{{ b2 | get_dict:'name' }}</a></div>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">MORE INFO</a></div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <a href="{% url 'homepage:staydetail' b3.name %}">
+                                <img class="card-img-top" src="{% static 'img/det3.jpg' %}"  alt="..." />
+                                    </a>
+                                <!--
+                                <h2 class="card-title">Card Three</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                                -->
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'homepage:staydetail' b3.name %}">{{ b3 | get_dict:'name' }}</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <a href="{% url 'homepage:staydetail' b4.name %}">
+                                <img class="card-img-top" src="{% static 'img/det4.jpg' %}"  alt="..." />
+                                    </a>
+                                <!--
+                                <h2 class="card-title">Card Three</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                                -->
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'homepage:staydetail' b4.name %}">{{ b4 | get_dict:'name' }}</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <a href="{% url 'homepage:staydetail' b5.name %}">
+                                <img class="card-img-top" src="{% static 'img/det5.jpg' %}"  alt="..." />
+                                    </a>
+                                <!--
+                                <h2 class="card-title">Card Three</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                                -->
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'homepage:staydetail' b5.name %}">{{ b5 | get_dict:'name' }}</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <a href="{% url 'homepage:staydetail' b6.name %}">
+                                <img class="card-img-top" src="{% static 'img/det6.jpg' %}"  alt="..." />
+                                    </a>
+                                <!--
+                                <h2 class="card-title">Card Three</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                                -->
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'homepage:staydetail' b6.name %}">{{ b6 | get_dict:'name' }}</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <a href="{% url 'homepage:staydetail' b7.name %}">
+                                <img class="card-img-top" src="{% static 'img/det7.jpg' %}"  alt="..." />
+                                    </a>
+                                <!--
+                                <h2 class="card-title">Card Three</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                                -->
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'homepage:staydetail' b7.name %}">{{ b7 | get_dict:'name' }}</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <a href="{% url 'homepage:staydetail' b8.name %}">
+                                <img class="card-img-top" src="{% static 'img/det8.jpg' %}"  alt="..." />
+                                    </a>
+                                <!--
+                                <h2 class="card-title">Card Three</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                                -->
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'homepage:staydetail' b8.name %}">{{ b8 | get_dict:'name' }}</a></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; OJO 2021</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src='{% static "js/staydetail_scripts.js" %}'></script>
+
+        <script>
+            //Get the button
+            var mybutton = document.getElementById("myBtn");
+            var col_lg_4 = document.getElementById("col_lg_4")
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+            
+            function scrollFunction() {
+              if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 205) {
+                mybutton.style.display = "block"; col_lg_4.style.display = "block";} 
+                else {
+                mybutton.style.display = "none"; col_lg_4.style.display = "none"}
+            }
+            
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+              document.body.scrollTop = 0;
+              document.documentElement.scrollTop = 0;
+            }
+            </script>
+
+        <script>
+            
+
+            //    First Like Button   
+            var btnvar1 = document.getElementById('btnh1');
+            var namevar1 = document.getElementsByName('b0')
+
+            function Toggle1(){
+                        if (btnvar1.style.color =="red") {
+                            btnvar1.style.color = "grey"
+                        }
+                        else{
+                            btnvar1.style.color = "red"
+                        }
+            }
+            </script>
+
     </body>
 </html>

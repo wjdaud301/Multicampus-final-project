@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import json
+from os import name
 
 from pymongo import MongoClient
 from django.shortcuts import render
@@ -14,11 +15,17 @@ from django.contrib import auth
 # from homepage.MongoDbManager import MongoDbManager
 from datetime import datetime
 import pandas as pd
-from homepage.Api import Json
+from homepage.Api import Json, recommandation
+from homepage.MongoDbManager import MongoDbManager_insta
+from django.core.paginator import Paginator
 #from .forms import SignUpForm
 
+# 0 = '혼자만의 숙소' 2 = '데이트하기 좋은 숙소' 3 = '특별한 체험이 있는 숙소' 4 = '고즈넉한 숙소' 5 = '감각있는 숙소'
+# 6 = '아름다운 풍경이 가득한 숙소' 7 = '놀기 좋은 숙소' 8 = '편안한 분위기의 숙소' 9 = '하늘과 바다가 가득한 숙소'
 
-filter = {'one' : '나홀로 여행', 'two':'도심속 휴식', 'three':'정적인 휴식','four':'아이와 함께','five':'시티뷰','six':'한옥','seven':'오션 뷰','eight':'숲 속'}
+
+filter = {'zero' : '오롯이 나를 위해 보내는 하루' , 'two':'너와 나, 우리 둘만의 하루', 'three':'당신의 하루를 특별하게','four':'고즈넉한 사색의 공간','five':'우리들만의 파티 플레이스',\
+    'six':'자연 그대로를 품다','seven':'자연에서의 놀이터','eight':'따듯하고 포근한 공간을 그리며','nine':'하늘과 바다가 가득 밀려드는'}
 # Create your views here.
 def home(requests):
     return render(requests, 'homepage/index.html')
@@ -46,20 +53,75 @@ def logcon(requests):
 
         if result is not None:
             # login(result)
-            return HttpResponseRedirect(reverse('homepage:theme'))
+            return HttpResponseRedirect(reverse('homepage:choice'))
         else:
             #return HttpResponseRedirect(reverse('homepage:relogin'))
             return render(requests, 'homepage/relogin.html')
             
-
 def login(requests):
     return render(requests, 'homepage/login.html')
+
+def choice(requests):
+    return render(requests, 'homepage/choice.html')
+
+def totalstay(requests):
+    if requests.method == 'POST':
+        return render(requests, 'homepage/find.html')
+
+    all = Json.all_info()
+    page = int(requests.GET.get('page',1))
+    paginator = Paginator(all, 16)
+    page_obj = paginator.get_page(page)
+    context = {'question_list': page_obj}
+    if requests.method == 'GET':
+        return render(requests, 'homepage/totalstay.html', context)
+
+
+global tmp_list 
+def find(requests):
+    global tmp_list 
+    if requests.method == 'POST':
+        print(requests.POST.get('tag'))
+        print(requests.POST.get('local'))
+        if requests.POST.get('tag') and requests.POST.get('local') != '0':
+            tag = requests.POST.get('tag')
+            local  = requests.POST.get('local')
+            tot = Json.tag_local_find_name(tag, local)
+            tmp_list = tot
+            
+        elif requests.POST.get('tag'):
+            tag  = requests.POST.get('tag')
+            tot = Json.tag_find_name(tag)
+            tmp_list = tot
+            
+        elif requests.POST.get('local'):
+            local  = requests.POST.get('local')
+            tot = Json.local_find_name(local)
+            tmp_list = tot
+
+    page = int(requests.GET.get('page',1))
+    paginator = Paginator(tmp_list, 16)
+    page_obj = paginator.get_page(page)
+    context = {'question_list': page_obj}
+    return render(requests, 'homepage/find.html', context)
+
+
+def popular(requests):
+    if requests.method == 'GET':
+        like = Json.most_like()
+        page = int(requests.GET.get('page',1))
+        paginator = Paginator(like, 16)
+        page_obj = paginator.get_page(page)
+        context = {'question_list': page_obj}
+        return render(requests, 'homepage/popular.html', context)
+
 
 def showTheme(requests):
     context = filter
     return render(requests, 'homepage/theme.html', context)
 
 def stayFilter(requests, theme):
+<<<<<<< HEAD
     # print(theme)
     # nowtime = datetime.today().strftime("%Y-%m-%d")
     # co_if = Json.corona_info(nowtime)
@@ -71,4 +133,41 @@ def stayFilter(requests, theme):
 
 def stayDetail(requests, name):
     return render(requests, 'homepage/staydetail.html')
+=======
+    nowtime = datetime.today().strftime("%Y-%m-%d")
 
+    if requests.method == 'GET':
+        page = int(requests.GET.get('page',1))  # 페이지
+        insta_if, _ = Json.insta_info(theme)
+        co_if = Json.corona_info(nowtime)    
+        paginator = Paginator(insta_if, 4)  # 페이지당 10개씩 보여주기
+        page_obj = paginator.get_page(page)
+        context = {'question_list': page_obj}
+        context.update(co_if)
+        context['filter'] = theme
+        return render(requests, 'homepage/stayfilter.html', context)
+
+    co_if = Json.corona_info(nowtime)
+    _, insta_if = Json.insta_info(theme)
+    co_if.update(insta_if)
+    co_if['filter'] = theme
+    return render(requests, 'homepage/stayfilter.html', co_if)
+
+# def stayFilter(requests, theme):
+#     nowtime = datetime.today().strftime("%Y-%m-%d")
+#     co_if = Json.corona_info(nowtime)
+#     insta_if = Json.insta_info(theme)
+#     co_if.update(insta_if)
+#     co_if['filter'] = theme
+#     return render(requests, 'homepage/stayfilter.html', co_if)
+
+def stayDetail(requests, name): 
+    name_info = {}
+    context = recommandation.insta_REC(name)
+    context['b10'] = name
+    output = Json.name_info(context)
+    return render(requests, 'homepage/staydetail.html', output)
+
+>>>>>>> 26f4beea27c7167f6d41785eb695130952d1665e
+
+   

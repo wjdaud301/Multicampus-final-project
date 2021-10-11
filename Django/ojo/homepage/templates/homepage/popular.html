@@ -1,0 +1,206 @@
+{% load static %}
+{% load dict_filter %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>OJO - SNS기반의 감성숙소 추천</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/ojo_favi.ico' %}" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href='{% static "css/stay_styles.css" %}' rel="stylesheet" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Batang&family=Gowun+Dodum&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+        <style>
+            #myBtn {
+              display: none;
+              position: fixed;
+              bottom: 20px;
+              right: 30px;
+              z-index: 99;
+              font-size: 18px;
+              border: none;
+              outline: none;
+              background-color: rgb(100, 100, 100);
+              color: white;
+              cursor: pointer;
+              padding: 15px;
+              border-radius: 4px;
+            }
+            
+            #myBtn:hover {
+              background-color: #555;
+            }
+
+            .fa-heart {
+            position: absolute;
+            z-index: 2;
+            color: red;
+            position: absolute;
+            }
+
+            .like-button {
+            position: absolute;
+            z-index: 2;
+            color: whitesmoke;
+            font-size: 20px;
+            text-align: right;
+            cursor: pointer;
+            border-radius: 10rem;
+            background-color: transparent;
+            border: transparent;
+            width: 99%;
+            padding-top: 4px;
+            padding-right: 4px;
+            }
+
+            .like-button :hover {
+            color: red;
+            }
+
+            </style>
+    </head>
+    <body>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5" style="font-family: 'Gowun Dodum', serif;">
+                <a class="font-GB" href="{% url 'homepage:choice' %}" style="text-decoration: none;">OJO 감성숙소</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/theme">테마 선택하기</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/popular">인기 숙소 둘러보기</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/totalstay">전체 숙소 둘러보기</a></li>
+                    </ul>
+                    <form class="d-flex">
+                        <button class="btn btn-outline-dark" href="http://ncov.mohw.go.kr/socdisBoardView.do?brdId=6&amp;brdGubun=1">
+                            <a class="btn btn-outline-dark" href="http://ncov.mohw.go.kr/">코로나 안전정보</a>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Page header with logo and tagline-->
+        <header class="py-5 bg-white border-bottom mb-4"  background=  'img/11.png'>
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="font-GB" style="font-size: 40px ;">인기숙소</h1>
+                    <p class="font-GD"> 인기숙소 리스트</p>
+                </div>
+            </div>
+        </header>
+        <!-- Page content-->
+        <div class="container">
+            <div class="row">
+                <div class="card-header" style="/* text-decoration: underline; */font-family: 'Gowun Dodum';">받은 ❤ 개수 기준으로 정렬</div>
+                    
+                </div>
+                
+                
+                <!-- Nested row for non-featured blog posts-->
+                <div class="row">
+                {% for list in question_list %}
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="{% url 'homepage:staydetail' list.name %}"><img class="card-img-top" src="{% get_static_prefix %}img/{{ list.img }}.jpg"  style="height: 306px; width: 306px;"/> </a>
+                            <div class="card-body" style="
+                            font-family: 'Gowun Dodum';
+                        ">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' list.name %}">
+                                <h2 class="card-title h4">{{ list | get_dict:'name' }}</h2>
+                                </a>
+                                <p class="card-text">{{ list | get_dict:'like' }}명이 좋아요를 눌렀습니다! <br/></p><br/>
+                            </div>
+                        </div>
+                    </div> 
+                {% endfor %}
+                </div>
+
+                <!-- Pagination-->
+                <nav aria-label="Pagination">
+                    <hr class="my-0" />
+                    <ul class="pagination justify-content-center my-4">
+                        <!-- <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+                        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">Older</a></li> -->
+                          <!-- 이전페이지 -->
+                        {% if question_list.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ question_list.previous_page_number }}">이전</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                        </li>
+                        {% endif %}
+                        <!-- 페이지리스트 -->
+                        {% for page_number in question_list.paginator.page_range %}
+                            {% if page_number == question_list.number %}
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                        <!-- 다음페이지 -->
+                        {% if question_list.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ question_list.next_page_number }}">다음</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                        
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; OJO 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src='{% static "js/stay_scripts.js" %}'></script>
+        <script>
+            //Get the button
+            var mybutton = document.getElementById("myBtn");
+            var col_lg_4 = document.getElementById("col_lg_4")
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+            
+            function scrollFunction() {
+              if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 205) {
+                mybutton.style.display = "block"; col_lg_4.style.display = "block";} 
+                else {
+                mybutton.style.display = "none"; col_lg_4.style.display = "none"}
+            }
+            
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+              document.body.scrollTop = 0;
+              document.documentElement.scrollTop = 0;
+            }
+            </script>
+    </body>
+</html>
