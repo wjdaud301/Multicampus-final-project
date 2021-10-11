@@ -1,0 +1,51 @@
+airflow
+				         	수집		적재		처리			      적재
+bash : hadoop start-all.sh -> bash : sleep 30 -> 	corona api.py	-> (bash)hdfs	-> corona(2) spark.py	     -> mongodb (corona)
+					corona stage.py			    insta(7) spark.py 	->main.py  -> mongodb (insta)    -> json.py
+					stay.tour.py						  -> mongodb (matrix)   -> recommend.py
+					...
+					...
+					7개 
+
+
+wbs -> usecase -> dfd -> 왜 하둡, 몽고, spark airflow를 왜 썻는지 -> 수집 적재 처리 적재 서비스 -> 
+
+하둡 -> 데이터레이크형식으로 데이터 날짜별 버전관리, hadoop 에코시스템과 spark를 연동하여 빠른 처리가 가능하다는 장점이있다.
+몽고 -> 텍스트의 형식의 저장을 하기 위해서 정형화되지 않은 nosql의장점을 활용하고자 하였고, 빅데이터의 저장공간으로 활용하기 좋다는 판단이 들어서 사용 
+	django는 원래 mysql과 postgresql에 특화되어 orm방식을 제공하고 있으나 저희 팀은 djong를 이용하여 login 기능을 사용하였고 pymongo를 이용하여 
+	mongodbManager.py를 생성하였고 mongodb를 사용하고자 하였다  
+spark -> rdd 형식의 빠른 데이터 처리와 다양한 확장자 csv, parquet, json과 같은 데이터를 다루는데 편리하다
+airflow -> spark형식의 데이터 처리와 bash명령어의 스케줄링을 하기 위해 사용하였다. 기존의 sqliteDB를 사용하면 병렬처리가 안되기 때문에 mysql과 연동하여 
+	병렬처리가 가능하도록 하였다.
+
+현재 진행사항 -> 수동으로 mongodb적재 서비스구현 중
+이후 진행사항 -> airflow를 활용한 자동화 구현
+
+
+1. 수집
+	1. 인스타계정 7개를 크롤링 했다 -> 오류 사항 우분투내에서 크롤링이 되지 않아 현재는 로컬에서 크롤링작업 후 aws server에 csv파일을 저장 (주기 : 3일)
+	2. 두 개의 corona 데이터를 수집 (주기 : 매일)
+
+2. 저장 
+	1. hdfs  =>  수집에서 어떻게 hdfs 들어가는지 -> hdfs dfs start-all.sh -> 데이터가 지금까지 버전을 어떻게 관리했는지 보여주는것
+
+3. 처리 
+	1. corona(2) spark.py -> spark dataframe
+	2. insta(7) spark.py  -> pandas datafame -> spark dataframe
+
+4. 모델 
+	DS
+
+5. 적재 
+	1. mognodb collections -> 3개의 collections(pymongo) -> django collections (djong) - matrix collections (tf-idf 유사도 행렬)
+
+6. 서비스
+	1. 웹기능설명도
+	2. UI 구성도
+	3. djong / mongodbManger / json 각각 캡쳐
+	4. url / view / template
+
+7. 현재 웹 진행 캡처
+
+
+
